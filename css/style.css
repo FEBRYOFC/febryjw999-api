@@ -1,0 +1,211 @@
+/* Setup variabel warna & font (Dark Mode) */
+:root {
+    --bg-color: #121212;
+    --grid-color: rgba(255, 255, 255, 0.05);
+    --card-bg: #1e1e1e;
+    --card-border: #333;
+    --text-main: #e0e0e0;
+    --text-muted: #888;
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: "Fira Code", Consolas, Monaco, "Courier New", Courier, monospace;
+}
+
+/* Reset bawaan browser */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling body & background grid pattern */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Wrapper utama biar kontennya di tengah */
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding-top: 40px;
+}
+
+/* Judul gede di atas */
+.header-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+/* Card buat API endpoint */
+.endpoint-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Header card yang bisa di-klik (toggle) */
+.endpoint-header {
+    padding: 18px 20px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #252525;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid transparent;
+}
+
+.endpoint-header:hover {
+    background-color: #2a2a2a;
+}
+
+/* Kalo card lagi kebuka, tambahin border di bawah headernya */
+.endpoint-card.active .endpoint-header {
+    border-bottom-color: var(--card-border);
+}
+
+/* Baris pertama: Method GET, Judul, Ikon Panah */
+.endpoint-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* Styling label "GET" */
+.badge-get {
+    background-color: #1b5e20;
+    color: #a5d6a7;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Teks judul API */
+.endpoint-title {
+    font-size: 17px;
+    font-weight: 600;
+    flex-grow: 1;
+    color: #fff;
+}
+
+/* Animasi panah drop-down */
+.chevron {
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+}
+
+/* Putar panahnya ke atas kalo card lagi aktif */
+.endpoint-card.active .chevron {
+    transform: rotate(180deg);
+}
+
+/* Baris path URL-nya */
+.endpoint-path-row {
+    background-color: #1a1a1a;
+    padding: 12px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Isi konten dalam card (default di-hide) */
+.endpoint-body {
+    display: none;
+    padding: 25px 20px;
+}
+
+/* Munculin isinya kalo ada class .active */
+.endpoint-card.active .endpoint-body {
+    display: block;
+}
+
+/* Styling buat teks penjelasannya */
+.endpoint-description {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Sub-judul kayak "ENDPOINT URL" */
+.section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-link {
+    opacity: 0.6;
+}
+
+/* Kotak tempat nampung URL & tombol copy */
+.code-block-container {
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background-color: #111;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+}
+
+/* Teks URL yang warnanya ijo itu */
+.code-content {
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    overflow-x: auto; /* Biar bisa di-scroll kalo kepanjangan */
+    white-space: nowrap;
+    color: #a6e22e;
+    flex-grow: 1;
+}
+
+/* Tombol copy biasa */
+.copy-btn {
+    background-color: #333;
+    border: 1px solid #444;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+.copy-btn:hover {
+    background-color: #444;
+    border-color: #555;
+}
+
+/* State tombol abis di-klik (berubah jadi ijo) */
+.copy-btn.copied {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+    color: #fff;
+}
